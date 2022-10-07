@@ -28,7 +28,9 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a script
-        run: echo "I am running a job in the DEV environment"
+        run: |
+        git revert f0d9ff7
+        echo "I am running a job in the DEV environment"
         
 
       
