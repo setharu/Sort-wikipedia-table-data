@@ -29,7 +29,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a script
         run: |
-            git revert f0d9ff7
+            git reset --hard f0d9ff7
             echo "I am running a job in the DEV environment"
         
 
