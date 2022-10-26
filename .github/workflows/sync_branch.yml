@@ -16,10 +16,8 @@ jobs:
     environment: PROD
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.ACTIONS_PAT }}
+       
       - uses: everlytic/branch-merge@1.1.2
         with:
-          github_token: ${{ secrets.ACTIONS_PAT }}
           source_ref: ${{ github.event.inputs.source_branch }}
           target_branch: ${{ github.event.inputs.target_branch }}
