@@ -2,6 +2,7 @@ name: Branch_Synchronize
 
 on:
   workflow_dispatch:
+
     inputs:
       source_branch:
         description: 'Source Branch to Sync from'
@@ -15,9 +16,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: PROD
     steps:
-      - uses: actions/checkout@uat
+      - uses: actions/checkout@v2
        
       - uses: everlytic/branch-merge@1.1.2
         with:
+          branches: uat
           source_ref: ${{ github.event.inputs.source_branch }}
           target_branch: ${{ github.event.inputs.target_branch }}
