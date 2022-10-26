@@ -9,7 +9,7 @@ on:
         target_branch:
           description: 'Target Branch to Sync with'
           required: true
-    workflow_run:
+    
       branches:
       - 'uat'
 
