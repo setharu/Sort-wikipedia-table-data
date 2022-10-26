@@ -2,6 +2,7 @@ name: Branch_Synchronize
 
 on:
   workflow_dispatch:
+
     inputs:
       source_branch:
         description: 'Source Branch to Sync from'
@@ -19,5 +20,6 @@ jobs:
        
       - uses: everlytic/branch-merge@1.1.2
         with:
+          branches: uat
           source_ref: ${{ github.event.inputs.source_branch }}
           target_branch: ${{ github.event.inputs.target_branch }}
