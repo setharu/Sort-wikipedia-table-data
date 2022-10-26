@@ -1,15 +1,17 @@
 name: Branch_Synchronize
-
 on:
-  workflow_dispatch:
+    workflow_dispatch:
 
-    inputs:
-      source_branch:
-        description: 'Source Branch to Sync from'
-        required: true
-      target_branch:
-        description: 'Target Branch to Sync with'
-        required: true
+      inputs:
+        source_branch:
+          description: 'Source Branch to Sync from'
+          required: true
+        target_branch:
+          description: 'Target Branch to Sync with'
+          required: true
+    workflow_run:
+      branches:
+      - 'uat'
 
 jobs:
  Synchronizing:
