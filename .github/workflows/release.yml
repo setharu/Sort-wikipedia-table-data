@@ -20,4 +20,8 @@ jobs:
           release_name: Release ${{github.run_number}}
           run : git log --pretty=format:%s <last release>... HEAD --no-merges
           draft: false
-          prerelease: false
+          prerelease: false 
+      - name : release changes
+        run : git log --pretty=format:%s <last release>... HEAD --no-merges
+
+
