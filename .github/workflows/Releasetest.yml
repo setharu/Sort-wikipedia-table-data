@@ -18,7 +18,7 @@ on:
 
         description: 'Example: v1.2.3'
 
-        required: true
+        #required: true
 
 jobs:
 
@@ -41,6 +41,8 @@ jobs:
         with:
 
           token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{github.run_number}}
+          release_name: Release ${{github.run_number}}
 
           exclude: true
 
