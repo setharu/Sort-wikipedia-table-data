@@ -1,40 +1,47 @@
 name: CI
 
 on:
-  workflow_dispatch
+
+
+
+
+
+  workflow_dispatch:
+
+    # You can manually trigger a deployment on GitHub.com
+
+    # https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
+
+    inputs:
+
+      Version:
+
+        description: 'Example: v1.2.3'
+
+        required: true
 
 jobs:
+
   Release:
-   runs-on: ubuntu-latest
-    - name :Create release
 
-      with: 
-        release_name: ${{github.run_number}}
-    
+    runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 50
-    - uses: setharu/release-with-changelog@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: setharu/release-with-changelog@v3
 
-      with:
+      - uses: actions/checkout@v2
 
-        token: ${{ secrets.GITHUB_TOKEN }}
+        with:
 
-        exclude: '^Meta'
+          fetch-depth: 50
 
-        commit-template: '- {title} ← {hash}'
+      - run: git tag ${{ github.event.inputs.Version }}
 
-        template: |
+      - uses: fregante/release-with-changelog@v3
 
-          ### Changelog
+        with:
 
-          {commits}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-          {range}
+          exclude: true
 
-          
-       
+          template: '{commits}'
