@@ -5,7 +5,12 @@ on:
 
 jobs:
   Release:
-    runs-on: ubuntu-latest
+   runs-on: ubuntu-latest
+    - name :Create release
+
+      with: 
+        release_name: ${{github.run_number}}
+    
     steps:
     - uses: actions/checkout@v2
       with:
