@@ -4,35 +4,32 @@ on:
   workflow_dispatch
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # windows-latest | macos-latest
-    name: Test changed-files
+  Release:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 50
+    - uses: fregante/release-with-changelog@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: fregante/release-with-changelog@v3
 
-      # Example 1
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v34
+      with:
 
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-          done
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Example 2
-      - name: Get changed files in the docs folder
-        id: changed-files-specific
-        uses: tj-actions/changed-files@v34
-        with:
-          files: |
-            docs/**
+        exclude: '^Meta'
 
-      - name: Run step if any file(s) in the docs folder change
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: |
-          echo "One or more files in the docs folder has changed."
-          echo "List all the files that have changed: ${{ steps.changed-files-specific.outputs.all_changed_files }}"
+        commit-template: '- {title} ← {hash}'
+
+        template: |
+
+          ### Changelog
+
+          {commits}
+
+          {range}
+
+          
+       
