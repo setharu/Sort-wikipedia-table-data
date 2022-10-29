@@ -41,8 +41,8 @@ jobs:
         with:
 
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag_name: ${{github.run_number}}
-          release_name: Release ${{github.run_number}}
+          tag: ${{github.run_number}}
+          title: Release ${{github.run_number}}
 
           exclude: true
 
