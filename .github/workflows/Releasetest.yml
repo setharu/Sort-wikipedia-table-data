@@ -1,12 +1,13 @@
 name: CI
 
 on:
-
-
-
-
-
   workflow_dispatch
+
+
+
+
+
+  # workflow_dispatch
 
     # You can manually trigger a deployment on GitHub.com
 
@@ -23,28 +24,15 @@ on:
 
 jobs:
 
-  Release:
-   
+   Release:
     runs-on: ubuntu-latest
-
     steps:
-      
       - uses: actions/checkout@v2
-
         with:
-
           fetch-depth: 50
-
       - run: git tag ${{ github.event.inputs.Version }}
-
-      - uses: setharu/release-with-changelog@v3
-
+      - uses: fregante/release-with-changelog@v3
         with:
-          #release_name:  ${{github.run_number}}
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{github.run_number}}
-          #title:  ${{github.run_number}}
-
           exclude: true
-
           template: '{commits}'
