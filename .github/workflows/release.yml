@@ -18,7 +18,7 @@ jobs:
         with:
           tag_name: ${{github.run_number}}
           release_name: Release ${{github.run_number}}
-          run : git log --pretty=format:%s <last release>... HEAD --no-merges
+          template: '{commits}'
           draft: false
           prerelease: false 
       - name : release changes
