@@ -8,11 +8,7 @@ jobs:
     name: Create Release
     runs-on: ubuntu-latest
     steps:
-      - uses: fregante/release-with-changelog@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          exclude: true
-          template: '{commits}'
+
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Create Release
@@ -26,3 +22,8 @@ jobs:
           template: '{commits}'
           draft: false
           prerelease: false 
+      - uses: fregante/release-with-changelog@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          exclude: true
+          template: '{commits}'
