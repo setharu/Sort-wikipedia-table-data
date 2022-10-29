@@ -41,7 +41,7 @@ jobs:
         with:
           
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: "v_${{github.run_number}}"
+          #tag: "v_${{github.run_number}}"
           exclude: true
 
           template: '{commits}'
