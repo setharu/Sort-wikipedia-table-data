@@ -36,3 +36,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           exclude: true
           template: '{commits}'
+          allowUpdates: true
