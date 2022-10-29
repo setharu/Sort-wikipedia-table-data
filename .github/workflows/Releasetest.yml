@@ -17,7 +17,7 @@ on:
    #  Version:
    #   
    #    description: 'Example: v1.2.3'
-   #    default: ${{github.run_number}}
+   #    options: ${{github.run_number}}
    #
    #    #required: true
 
