@@ -37,7 +37,7 @@ jobs:
 
       - run: git tag ${{ github.event.inputs.Version }}
 
-      - uses: fregante/release-with-changelog@v3
+      - uses: setharu/release-with-changelog@v3
 
         with:
           #release_name:  ${{github.run_number}}
