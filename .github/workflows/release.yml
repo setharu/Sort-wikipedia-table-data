@@ -21,7 +21,6 @@ jobs:
           template: '{commits}'
           draft: false
           prerelease: false 
-      - name : release changes
-        run : git log --pretty=format:%s <last release>... HEAD --no-merges
+    
 
 
