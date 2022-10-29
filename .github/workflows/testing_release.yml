@@ -1,0 +1,34 @@
+name: release_test1
+on:
+  workflow_dispatch:
+    inputs:
+      Version:
+        description: 'Example: v1.2.3'
+        required: false
+        default:  ${{ github.run_number }}
+jobs:
+
+  Release:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+        with:
+
+          fetch-depth: 50
+
+      - run: git tag ${{ github.event.inputs.Version }}
+      #- run: git tag ${{ github.run_number }}
+
+      - uses: fregante/release-with-changelog@v3
+
+        with:
+          
+          token: ${{ secrets.GITHUB_TOKEN }}
+          #tag: "v_${{github.run_number}}"
+          exclude: true
+
+          template: '{commits}'
