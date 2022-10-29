@@ -6,28 +6,29 @@ on:
 
 
 
-  workflow_dispatch:
+  workflow_dispatch
 
     # You can manually trigger a deployment on GitHub.com
 
     # https://github.blog/changelog/2020-07-06-github-actions-manual-triggers-with-workflow_dispatch/
 
-    inputs:
-
-      Version:
-
-        description: 'Example: v1.2.3'
-
-        #required: true
+    #inputs:
+#
+    #  Version:
+#
+    #    description: 'Example: v1.2.3'
+    #    default: ${{github.run_number}}
+#
+    #    #required: true
 
 jobs:
 
   Release:
-
+   
     runs-on: ubuntu-latest
 
     steps:
-
+      
       - uses: actions/checkout@v2
 
         with:
@@ -39,10 +40,10 @@ jobs:
       - uses: fregante/release-with-changelog@v3
 
         with:
-
+          release_name:  ${{github.run_number}}
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{github.run_number}}
-          title:  ${{github.run_number}}
+          #tag: ${{github.run_number}}
+          #title:  ${{github.run_number}}
 
           exclude: true
 
