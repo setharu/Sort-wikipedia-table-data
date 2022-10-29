@@ -42,7 +42,7 @@ jobs:
 
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{github.run_number}}
-          title: Releasev ${{github.run_number}}
+          title:  ${{github.run_number}}
 
           exclude: true
 
