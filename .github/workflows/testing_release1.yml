@@ -2,12 +2,35 @@ on:
    workflow_dispatch
 name: release-please
 
+#name: 'release'
+#on:
+#  push:
+#    branches:
+#      - 'releases/*'
+
 jobs:
-  release_version:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Generate GitHub Release
-        uses: lsegal/github-release-from-changelog-action@latest
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - run: npm ci --prod
+      - run: git add node_modules -f
+
+      - name: Generate changelog
+        id: changelog
+        uses: ./
+        with:
+          github-token: ${{ secrets.github_token }}
+          create-summary: true
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        if: steps.changelog.outputs.skipped != 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.github_token }}
+        with:
+          tag_name: ${{ steps.changelog.outputs.tag }}
+          release_name: ${{ steps.changelog.outputs.tag }}
+          body: ${{ steps.changelog.outputs.clean_changelog }}
