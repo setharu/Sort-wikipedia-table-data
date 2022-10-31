@@ -7,13 +7,14 @@ on:
 
 
 jobs:
-  release:
-    name: "Release"
-
-    runs-on: "ubuntu-latest"
-
+   create-github-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+   
     steps:
-      - name: "Create release"
-        uses: "ergebnis/.github/actions/github/release/create@1.7.0"
-        with:
-          github-token: "${{ secrets.ERGEBNIS_BOT_TOKEN }}"
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Create Release
+        run: gh release create ${{ github.ref }} --generate-notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
