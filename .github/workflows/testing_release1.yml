@@ -1,10 +1,8 @@
 
 on:
   push:
-    tags:
-      - 'v*'
-
-name: Create Release
+   
+name: testing_release1
 
 jobs:
   publish:
