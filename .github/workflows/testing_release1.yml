@@ -3,15 +3,15 @@ on:
   push:
     tags:
       - '*'
-  #pull_request:
+  pull_request:
 
-#concurrency:
-#  group: ${{ github.event.pull_request.number }}-ci
-#  cancel-in-progress: true
+concurrency:
+  group: ${{ github.event.pull_request.number }}-ci
+  cancel-in-progress: true
 
 jobs:
   build:
-    #if: github.event_name  == 'pull_request'
+    if: github.event_name  == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -33,7 +33,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   test:
-    #if: github.event_name  == 'pull_request'
+    if: github.event_name  == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       # the below actions use the local state of the action. please replace `./` with `mikepenz/release-changelog-builder-action@{latest-release}`
