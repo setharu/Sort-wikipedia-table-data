@@ -39,7 +39,7 @@ function walk(root, result=[]) {
 }
 
 function walkLib(config) {
-  const files = walk('./lib/');
+  const files = walk('https://github.com/MylesBorins/node-osc/tree/main/lib');
   files.forEach(({input, dir}) => {
     config.push({
       input,
