@@ -1,7 +1,7 @@
 on:
   workflow_dispatch
 
-name: Create Release
+name: Create Release test
 
 jobs:
   build:
