@@ -23,7 +23,7 @@ jobs:
         with:
           title: ${{ github.run_number }}
           #release_name: Release ${{ github.run_number }}
-          #body: |
-          #  ${{ steps.Changelog.outputs.changelog }}
+          body: |
+            ${{ steps.Changelog.outputs.changelog }}
           #draft: false
           #prerelease: false
