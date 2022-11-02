@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Changelog
-        uses: scottbrenner/generate-changelog-action@master
+        uses: elgohr/Github-Release-Action@v4 #scottbrenner/generate-changelog-action@master
         id: Changelog
       - name: Create Release
         id: create_release
